@@ -13,7 +13,7 @@ h_pad(1:min(numel(h),M)) = h(1:min(numel(h),M));
 h_flip = fliplr(h_pad);
 
 R_Y = conv(h_pad, h_flip)(M:2*M-1);
-R_Y(1) += var_V;
+R_Y(1) = R_Y(1) + var_V;
 RR_Y = toeplitz(R_Y);
 
 R_YX = [h(1) zeros(1, M-1)];
@@ -102,7 +102,7 @@ for M = [2 5 10 30]
   h_flip = fliplr(h_pad);
 
   R_Y = conv(h_pad, h_flip)(M:2*M-1);
-  R_Y(1) += var_V;
+  R_Y(1) = R_Y(1) + var_V;
   RR_Y = toeplitz(R_Y);
 
   R_YX = [h(1) zeros(1, M-1)];
@@ -157,4 +157,4 @@ for M = [2 5 10 30]
   legend('|H(\omega)|', '|W(\omega)|', '|H(\omega)|\cdot|W(\omega)|');
   set(findall(gcf,'type','line'),'LineWidth',2);
   set(gca, 'FontSize', 16);
-endfor
+end
