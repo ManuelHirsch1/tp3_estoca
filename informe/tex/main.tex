@@ -48,7 +48,9 @@ Finalmente $\textbf{w}_o$ es un vector que se obtiene de operar de la siguiente 
 
 \section{Ejercicio 3}
 
-Como se demuestra en la (REFERENCIAR seccion 1), las matrices con las que se calculan los coeficientes óptimos para el equalizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la funcion \verb*|filter| con $\textbf{h}$ y $\textbf{w}_o$. La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en algo similar a una delta en el origen y la PSD resulta ruidosa, pero relativamente constante. En la figura~\ref{fig:ej3_y} se observan los atributos de la secuencia $Y(n)$, es decir como termina $X(n)$ una vez que atraviesa el canal. Como era de esperar, la señal se distorsiona considerablemente, ya que tanto la secuencia, como su autocorrelación y PSD difieren mucho de $X(n)$
+Como se demuestra en la (REFERENCIAR seccion 1), las matrices con las que se calculan los coeficientes óptimos para el equalizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la funcion \verb*|filter| con $\textbf{h}$ y $\textbf{w}_o$. La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en algo similar a una delta en el origen y la PSD resulta ruidosa, pero relativamente constante. En la figura~\ref{fig:ej3_y} se observan los atributos de la secuencia $Y(n)$, es decir como termina $X(n)$ una vez que atraviesa el canal. Como era de esperar, la señal se distorsiona considerablemente, ya que tanto la secuencia, como su autocorrelación y PSD difieren mucho de $X(n)$. Por último, La figura~\ref{fig:ej3_z} muestra una secuencia casi idéntica a la de entrada, demostrando que el equalizador funcionó correctamente.
+
+En la figura~\ref{fig:ej3_coef} se muestra una comparación de los coeficientes del modelo del canal y los coeficientes del equalizador obtenidos. 
 
 \begin{figure}[h]
 	\centering
@@ -69,4 +71,11 @@ Como se demuestra en la (REFERENCIAR seccion 1), las matrices con las que se cal
 	\includegraphics[width=1\linewidth]{img/ej3_z.pdf}
 	\caption{Secuencia, autocorrelación y PSD de $Z(n)$.}
 	\label{fig:ej3_z}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{img/ej3_coef.pdf}
+	\caption{Comparación de $h$ y $w$.}
+	\label{fig:ej3_coef}
 \end{figure}
