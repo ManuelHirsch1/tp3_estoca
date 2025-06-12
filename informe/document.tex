@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{article}
+
+\pdfsuppresswarningpagegroup=1
+
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{subcaption}
+
+\usepackage{ifpdf}
+\ifpdf
+  \DeclareGraphicsExtensions{.pdf,.png}
+\else
+\fi
+
+\usepackage{mystyle}
+
+\begin{document}
+
+\input{./tex/title.tex}
+\input{./tex/abstract.tex}
+\vspace{1em}
+\thispagestyle{empty}
+
+\clearpage
+\input{./tex/intro.tex}
+\input{./tex/main.tex}
+\input{./tex/conclusions.tex}
+
+\end{document}
