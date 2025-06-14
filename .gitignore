@@ -10,3 +10,5 @@ document.pdf
 *.log
 *.raw
 *.fft
+
+informe/document.synctex.gz
