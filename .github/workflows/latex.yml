@@ -1,0 +1,20 @@
+name: Build LaTeX Document
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up LaTeX environment
+        uses: dante-ev/latex-action@v2
+        with:
+          root-file: informe/document.tex
