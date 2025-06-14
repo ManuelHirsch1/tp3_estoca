@@ -1,4 +1,48 @@
-\section{Desarrollo}
+\section{Cálculos teóricos}
+
+Para empezar a operar el sistema LTI estocástico, es necesario hacer algunos cálculos iniciales, como correlaciones varias.
+
+Como $h(n)$ es la respuesta impulsiva a un filtro FIR de largo $L$, la misma será una secuencia lineal del siguiente tipo:
+$h(n) = \{h_0, h_1, \cdots, h_{L-1}\}$. Análogamente, el ecualizador descripto por $w(n)$ también se desarrollará como una secuencia
+de largo $M$: $w(n) = \{w_0, w_1, \cdots, w_{M-1}\}$. Por tanto, ambas respuestas son nulas a valores de $n$ negativos (causales) y
+superiores a su largo.
+
+Se sabe que $X(n)\in\{-1,1\}$ y, para cada instante distinto, las variables aleatorias son independientes e idénticamente distribuidas,
+por lo que tendrán media nula constante. Asumiendo que es un proceso estacionario en sentido amplio, es posible calcular su función de
+autocorrelación de la siguiente manera
+\begin{align*}
+    R_X(k) &= \mathbb{E}[X(n)X(n+k)] =
+    \begin{cases}
+        \mathbb{E}[\underbrace{X^2(n)}_{ = 1}] & k = 0 \\
+        \underbrace{\mathbb{E}[X(n)]\mathbb{E}[X(n+k)]}_{=0} & k \neq 0
+    \end{cases}\\
+    &= \delta(k).
+\end{align*}
+
+Al proceso de salida del filtro FIR se le suma un ruido blanco $V(n)$ de varianza $\sigma^2$ y media nula independiente a $X(n)$,
+definiéndose \[Y(n) = (h * X)(n) + V(n) = \sum_{i=1}^{L-1} h(i)X(n - i) + V(n)\] por lo que es posible calcular su función de
+autocorrelación de la siguiente manera.
+
+\begin{align*}
+    R_Y(k) &= \mathbb{E}[Y(n)Y(n+k)]\\
+    &= \mathbb{E}\left[\left(\sum_{i=1}^{L-1} h(i)X(n - i) + V(n)\right)\left(\sum_{j=1}^{L-1} h(j) X(n + k - j) + V(n+k)\right)\right]\\
+    &= \sum_{i=1}^{L-1}\sum_{j=1}^{L-1} h(i)h(j) \mathbb{E}[X(n - i)X(n + k - j)] + \mathbb{E}[V(n)V(n + k)]\\
+    &= \sum_{i=1}^{L-1}\sum_{j=1}^{L-1} h(i)h(j) R_X(k+i-j) + R_V(k) = \sum_{i=1}^{L-1}\sum_{j=1}^{L-1} h(i)h(j) \delta(k+i-j) + \sigma_V^2\delta(k)\\
+    &= \sum_{i=1}^{L-1} h(i)h(k+i) + \sigma_V^2\delta(k) = \sum_{n = 1 - L}^{-1} h(-n)h(k-n) + \sigma_V^2\delta(k) \underset{\substack{\downarrow \\ \tilde{h}(n) = h(-n)}}{=} (\tilde{h}*h)(k) + \sigma_V^2\delta(k)\\
+\end{align*}
+
+Se procede a continuación con el cálculo de la correlación cruzada entre $X(n)$ e $Y(n)$.
+\begin{align*}
+    R_{XY}(k) &= \mathbb{E}[X(n)Y(n+k)] = \mathbb{E}\left[X(n)\left(\sum_{j=1}^{L-1} h(j)X(n + k - j) + V(n+k)\right)\right]\\
+    &= \sum_{j=1}^{L-1} h(j) R_X(k-j) = \sum_{j=1}^{L-1} h(j) \delta(k-j) = h(k)
+\end{align*}
+
+Los resultados obtenidos son los siguientes:
+\begin{align*}
+    \boxed{R_X(k) = \delta(k)} &&
+    \boxed{R_Y(k) = (\tilde{h} * h)(k) + \sigma_V^2 \delta(k)} &&
+    \boxed{R_{XY}(k) = h(k)}
+\end{align*}
 
 \section{Ejercicio 2}
 La solución óptima para los coeficientes del ecualizador debe cumplir con la siguiente expresión:
