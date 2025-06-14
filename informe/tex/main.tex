@@ -131,4 +131,67 @@ En la figura~\ref{fig:ej3_coef} se muestra una comparación de los coeficientes 
 
 \section{Ejercicio 4}
 
-En esta instancia se analiza como la longitud del filtro ecualizador afecta la calidad de la señal de salida.
+En esta instancia se analiza como la longitud del filtro ecualizador afecta la calidad de la señal de salida. Para eso se toman distintos largos del filtro ecualizador \{2, 5, 10, 30\} y se grafican los coeficientes del filtro ecualizador resultantes, la convolución entre el filtro y el canal $\textbf{w}_o * \textbf{h}$ y por último las respuestas en frecuencia $|H(w)|, |W(w)|$ y $|H(w)| \cdot |W(w)|$ (figuras~\ref{fig:ej4_2_coef}, ~\ref{fig:ej4_5_coef}, ~\ref{fig:ej4_10_coef} y ~\ref{fig:ej4_30_coef}). Además se grafican la seucencia Z(n) resultante en las figuras~\ref{fig:ej4_2_z}, ~\ref{fig:ej4_5_z}, ~\ref{fig:ej4_10_z} y ~\ref{fig:ej4_30_z} para cada largo del ecualizador, demostrando qué tanto se parece a la X(n) original.
+
+Se nota que a medida que M crece, Z(n) se parece cada vez más a X(n), atenuandose todo efecto inducido por el canal. Para un M chico, figura~\ref{fig:ej4_2_z}, no hay suficiente información en el ecualizador para revertir los cambios que hace el canal. Por otro lado, llega un punto en el que aumentar M no tiene un efecto diferencial sobre la salida, por lo que no tiene sentido seguir aumentándolo ya que significa más gasto computacional.
+
+Esto mismo se puede visualizar en las figuras del sistema en cascada. Recordar que $Z(n) = \textbf{w}_o * \textbf{h} * X(n) + \textbf{w}_o * V(n)$, por lo que es deseable que $\textbf{w}_o * \textbf{h}$ sea una delta para que $Z(n) \approx X(n)$. Dicho otra manera, que la respuesta en frecuencia del sistema en cascada sea un filtro 'pasa-todo'. En la figura~\ref{fig:ej4_30_coef} se aprecian estos atributos mencionados.
+
+En resumen, hay que encontrar una relación de compromiso entre el largo del ecualizador y la calidad de la señal de salida, para obtener algo fiel a la entrada sin tener que hacer calculos en vano. 
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_2_coef.pdf}
+	\caption{Filtro, sistema en cascada y respuestas en frecuencia para M = 2.}
+	\label{fig:ej4_2_coef}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_2_z.pdf}
+	\caption{Secuencia Z(n) resultante para M = 2.}
+	\label{fig:ej4_2_z}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_5_coef.pdf}
+	\caption{Filtro, sistema en cascada y respuestas en frecuencia para M = 5.}
+	\label{fig:ej4_5_coef}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_5_z.pdf}
+	\caption{Secuencia Z(n) resultante para M = 5.}
+	\label{fig:ej4_5_z}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_10_coef.pdf}
+	\caption{Filtro, sistema en cascada y respuestas en frecuencia para M = 10.}
+	\label{fig:ej4_10_coef}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_10_z.pdf}
+	\caption{Secuencia Z(n) resultante para M = 10.}
+	\label{fig:ej4_10_z}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_30_coef.pdf}
+	\caption{Filtro, sistema en cascada y respuestas en frecuencia para M = 30.}
+	\label{fig:ej4_30_coef}
+\end{figure}
+
+\begin{figure}[!hbp]
+	\centering
+	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej4_30_z.pdf}
+	\caption{Secuencia Z(n) resultante para M = 30.}
+	\label{fig:ej4_30_z}
+\end{figure}
+
