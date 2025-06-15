@@ -6,9 +6,12 @@
 *.out
 *.toc
 document.pdf
+TP3-G01.pdf
 
 *.log
 *.raw
 *.fft
 
-informe/document.synctex.gz
+*.synctex.gz
+*.fdb_latexmk
+*.fls
