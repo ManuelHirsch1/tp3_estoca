@@ -8,6 +8,10 @@ on:
 
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./informe
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,4 +22,3 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: informe/document.tex
-        working_directory: ./informe
