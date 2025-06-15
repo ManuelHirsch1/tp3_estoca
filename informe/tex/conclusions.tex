@@ -1,3 +1,9 @@
 \clearpage
 
 \section{Conclusiones}
+
+Este trabajo permitió el estudio de la compensación de la distorsión introducida por un canal de comunicación. Se logró diseñar con éxito un ecualizador a partir de un filtro FIR, cuyos coeficientes fueron hallados en base al criterio óptimo MMSE. Se logró comprender cómo un canal de comunicación distorsiona una señal, y gracias a los métodos estudiados en clase se pudo recuperar la señal original casi sin distorsiones usando un filtro de veinte coeficientes de largo.
+
+Se analizó cómo varía la señal ecualizada al utilizar filtros de largos diferentes. En particular, es interesante notar que para filtros de largos $M = 2$ y $M = 5$ la señal reconstruida aún presenta una distorsión considerable. Recién para filtros de más de 10 coeficientes se logra compensar el efecto del canal en forma aceptable. Además, las mejoras obtenidas para filtros de largos mayores fueron negligibles. Esto resalta la importancia de establecer una correcta relación de compromiso entre el resultado final y el largo elegido, ya que un largo mayor representa un costo computacional más grande, sin necesariamente dar mejores resultados.
+
+Se logró hacer uso de las herramientas presentadas en clase para encarar un problema que, a pesar de ser mayormente teórico, revela los problemas que pueden encontrarse en el ámbito de las comunicaciones. Se destaca la utilidad del estudio de sistemas LTI y procesos estocásticos estacionarios, que son simplificaciones muy útiles a la hora de realizar cálculos.
