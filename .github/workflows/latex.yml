@@ -19,3 +19,10 @@ jobs:
         with:
           root_file: document.tex
           working_directory: ./informe
+      
+      - name: Upload pdf
+        uses: actions/upload-artifact@master
+        with:
+          name: document.pdf
+          path: ./informe
+        if: always()
