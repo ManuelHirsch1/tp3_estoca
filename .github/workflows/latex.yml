@@ -18,3 +18,4 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: informe/document.tex
+        working_directory: ./informe
