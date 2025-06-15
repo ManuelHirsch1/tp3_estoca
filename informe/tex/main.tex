@@ -18,6 +18,7 @@ autocorrelación de la siguiente manera
     \end{cases}\\
     &= \delta(k).
 \end{align*}
+Observar que $X(n)$ se trata de un ruido blanco.
 
 Al proceso de salida del filtro FIR se le suma un ruido blanco $V(n)$ de varianza $\sigma^2$ y media nula independiente a $X(n)$,
 definiéndose \[Y(n) = (h * X)(n) + V(n) = \sum_{i=1}^{L-1} h(i)X(n - i) + V(n)\] por lo que es posible calcular su función de
@@ -47,7 +48,7 @@ Los resultados obtenidos son los siguientes:
 \section{Elección óptima del filtro ecualizador}
 \label{sec:eleccion-optima}
 
-La solución óptima para los coeficientes del ecualizador debe cumplir con la siguiente expresión:
+La solución óptima MMSE para los coeficientes del ecualizador debe cumplir con la siguiente expresión:
 \begin{equation*}
 	\mathbf{R}_Y \mathbf{w}_o = \mathbf{R}_{YX},
 \end{equation*}
@@ -83,11 +84,10 @@ donde $\mathbf{R}_Y$ es la matriz de Toeplitz de la autocorrelación de $Y$. Lue
 \end{bmatrix}
 \]
 
-Finalmente $\mathbf{w}_o$ es un vector que se obtiene de operar de la siguiente manera con las matrices previamente mencionadas.
-
-\begin{equation}
-	\mathbf{w}_o = \mathbf{R}_Y^{-1} \cdot \mathbf{R}_{YX}
-\end{equation}
+Finalmente $\mathbf{w}_o$ es un vector que se obtiene de operar de la siguiente manera con las matrices previamente mencionadas
+\begin{equation*}
+	\mathbf{w}_o = \mathbf{R}_Y^{-1} \cdot \mathbf{R}_{YX}.
+\end{equation*}
 
 \section{Simulación del sistema}
 
@@ -124,13 +124,12 @@ En la figura~\ref{fig:ej3_coef} se muestra una comparación de los coeficientes 
 
 \begin{figure}[!hbp]
 	\centering
-	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej3_coef.pdf}
+	\includegraphics[width=\linewidth,trim=4cm 0 4cm 0,clip]{img/ej3_coef.pdf}
 	\caption{Comparación de $h$ y $w$.}
 	\label{fig:ej3_coef}
 \end{figure}
 
 \clearpage
-
 \section{Variación del largo del filtro ecualizador}
 
 En esta instancia se analiza cómo la longitud del filtro ecualizador afecta la calidad de la señal de salida. Para eso se toman distintos largos del filtro ecualizador (2, 5, 10, 30) y se grafican los coeficientes del filtro ecualizador resultantes, la convolución entre el filtro y el canal $\mathbf{w}_o * \mathbf{h}$ y por último las respuestas en frecuencia $|H(w)|, |W(w)|$ y $|H(w)| \cdot |W(w)|$ (figuras~\ref{fig:ej4_2_coef},~\ref{fig:ej4_5_coef},~\ref{fig:ej4_10_coef} y~\ref{fig:ej4_30_coef}). Además se grafican las secuencias $Z(n)$ resultantes en las figuras~\ref{fig:ej4_2_z},~\ref{fig:ej4_5_z},~\ref{fig:ej4_10_z} y~\ref{fig:ej4_30_z} para cada largo del ecualizador. Esto sirve para observar qué tanto se parece la señal resultante $Z(n)$ a la entrada $X(n)$. Notar que tanto $X(n)$ como la señal distorsionada y ruidosa $Y(n)$ son las mismas que se utilizaron en el análisis previo, siendo las dadas en las figuras~\ref{fig:ej3_x} y~\ref{fig:ej3_y}, respectivamente.
