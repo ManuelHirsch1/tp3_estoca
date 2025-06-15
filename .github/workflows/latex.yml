@@ -17,12 +17,13 @@ jobs:
       - name: Set up LaTeX environment
         uses: dante-ev/latex-action@latest
         with:
-          root_file: document.tex
-          working_directory: ./informe
+          entrypoint: ./compile.sh
       
       - name: Upload pdf
         uses: actions/upload-artifact@master
         with:
-          name: TP3-G01.pdf
-          path: ./informe/document.pdf
+          name: TP3-G01
+          path: |
+            TP3-G01.pdf
+            TP3-G01.m
         if: always()
