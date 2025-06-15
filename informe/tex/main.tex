@@ -18,6 +18,7 @@ autocorrelación de la siguiente manera
     \end{cases}\\
     &= \delta(k).
 \end{align*}
+Observar que $X(n)$ se trata de un ruido blanco.
 
 Al proceso de salida del filtro FIR se le suma un ruido blanco $V(n)$ de varianza $\sigma^2$ y media nula independiente a $X(n)$,
 definiéndose \[Y(n) = (h * X)(n) + V(n) = \sum_{i=1}^{L-1} h(i)X(n - i) + V(n)\] por lo que es posible calcular su función de
@@ -47,7 +48,7 @@ Los resultados obtenidos son los siguientes:
 \section{Elección óptima del filtro ecualizador}
 \label{sec:eleccion-optima}
 
-La solución óptima para los coeficientes del ecualizador debe cumplir con la siguiente expresión:
+La solución óptima MMSE para los coeficientes del ecualizador debe cumplir con la siguiente expresión:
 \begin{equation*}
 	\mathbf{R}_Y \mathbf{w}_o = \mathbf{R}_{YX},
 \end{equation*}
@@ -83,15 +84,16 @@ donde $\mathbf{R}_Y$ es la matriz de Toeplitz de la autocorrelación de $Y$. Lue
 \end{bmatrix}
 \]
 
-Finalmente $\mathbf{w}_o$ es un vector que se obtiene de operar de la siguiente manera con las matrices previamente mencionadas.
-
-\begin{equation}
-	\mathbf{w}_o = \mathbf{R}_Y^{-1} \cdot \mathbf{R}_{YX}
-\end{equation}
+Finalmente $\mathbf{w}_o$ es un vector que se obtiene de operar de la siguiente manera con las matrices previamente mencionadas
+\begin{equation*}
+	\mathbf{w}_o = \mathbf{R}_Y^{-1} \cdot \mathbf{R}_{YX}.
+\end{equation*}
 
 \section{Simulación del sistema}
 
-Como se demuestra en la Sección~\ref{sec:eleccion-optima}, las matrices con las que se calculan los coeficientes óptimos para el ecualizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la funcion \verb*|filter| con $\mathbf{h}$ y $\mathbf{w}_o$. La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en algo similar a una delta en el origen y la PSD resulta ruidosa, pero relativamente constante.
+Como se demuestra en la Sección~\ref{sec:eleccion-optima}, las matrices con las que se calculan los coeficientes óptimos para el ecualizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la función \verb|filter| con $\mathbf{h}$ y $\mathbf{w}_o$. El ruido $V(n)$ que se añade a la distorsión causada por el canal es un ruido blanco gaussiano de media nula y varianza $\sigma_V^2 = 0.005$. Los coeficientes del filtro $h(n)$ que distorsiona la señal son ${1, 0.6, 0.2, -0.2, 0.1, 0.05}$.
+
+La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en algo similar a una delta en el origen y la PSD resulta ruidosa, pero relativamente constante.
 
 \begin{figure}[!hbp]
 	\centering
@@ -122,22 +124,21 @@ En la figura~\ref{fig:ej3_coef} se muestra una comparación de los coeficientes 
 
 \begin{figure}[!hbp]
 	\centering
-	\includegraphics[width=1\linewidth,trim=4cm 0 4cm 0,clip]{img/ej3_coef.pdf}
+	\includegraphics[width=\linewidth,trim=4cm 0 4cm 0,clip]{img/ej3_coef.pdf}
 	\caption{Comparación de $h$ y $w$.}
 	\label{fig:ej3_coef}
 \end{figure}
 
 \clearpage
+\section{Variación del largo del filtro ecualizador}
 
-\section{Ejercicio 4}
+En esta instancia se analiza cómo la longitud del filtro ecualizador afecta la calidad de la señal de salida. Para eso se toman distintos largos del filtro ecualizador (2, 5, 10, 30) y se grafican los coeficientes del filtro ecualizador resultantes, la convolución entre el filtro y el canal $\mathbf{w}_o * \mathbf{h}$ y por último las respuestas en frecuencia $|H(w)|, |W(w)|$ y $|H(w)| \cdot |W(w)|$ (figuras~\ref{fig:ej4_2_coef},~\ref{fig:ej4_5_coef},~\ref{fig:ej4_10_coef} y~\ref{fig:ej4_30_coef}). Además se grafican las secuencias $Z(n)$ resultantes en las figuras~\ref{fig:ej4_2_z},~\ref{fig:ej4_5_z},~\ref{fig:ej4_10_z} y~\ref{fig:ej4_30_z} para cada largo del ecualizador. Esto sirve para observar qué tanto se parece la señal resultante $Z(n)$ a la entrada $X(n)$. Notar que tanto $X(n)$ como la señal distorsionada y ruidosa $Y(n)$ son las mismas que se utilizaron en el análisis previo, siendo las dadas en las figuras~\ref{fig:ej3_x} y~\ref{fig:ej3_y}, respectivamente.
 
-En esta instancia se analiza como la longitud del filtro ecualizador afecta la calidad de la señal de salida. Para eso se toman distintos largos del filtro ecualizador \{2, 5, 10, 30\} y se grafican los coeficientes del filtro ecualizador resultantes, la convolución entre el filtro y el canal $\textbf{w}_o * \textbf{h}$ y por último las respuestas en frecuencia $|H(w)|, |W(w)|$ y $|H(w)| \cdot |W(w)|$ (figuras~\ref{fig:ej4_2_coef}, ~\ref{fig:ej4_5_coef}, ~\ref{fig:ej4_10_coef} y ~\ref{fig:ej4_30_coef}). Además se grafican la seucencia Z(n) resultante en las figuras~\ref{fig:ej4_2_z}, ~\ref{fig:ej4_5_z}, ~\ref{fig:ej4_10_z} y ~\ref{fig:ej4_30_z} para cada largo del ecualizador, demostrando qué tanto se parece a la X(n) original.
+Se nota que a medida que $M$ crece, $Z(n)$ se parece cada vez más a $X(n)$, atenuándose todo efecto inducido por el canal. Para un $M$ chico, por ejemplo $M = 2$ en la figura~\ref{fig:ej4_2_z}, no hay suficiente información en el ecualizador para revertir los cambios que hace el canal. Por otro lado, llega un punto en el que aumentar $M$ no tiene un efecto diferencial sobre la salida, por lo que no tiene sentido seguir aumentándolo ya que significa más gasto computacional. En particular, casi no se observan cambios entre las señales ecualizadas obtenidas para $M = 20$ (figura~\ref{fig:ej3_z}) y $M = 30$ (figura~\ref{fig:ej4_30_z}). Incluso para $M = 10$, si bien la distorsión es más apreciable, la similitud entre $X(n)$ y $Z(n)$ es muy alta.
 
-Se nota que a medida que M crece, Z(n) se parece cada vez más a X(n), atenuandose todo efecto inducido por el canal. Para un M chico, figura~\ref{fig:ej4_2_z}, no hay suficiente información en el ecualizador para revertir los cambios que hace el canal. Por otro lado, llega un punto en el que aumentar M no tiene un efecto diferencial sobre la salida, por lo que no tiene sentido seguir aumentándolo ya que significa más gasto computacional.
+Esto mismo se puede visualizar en las figuras del sistema en cascada. Recordar que $Z(n) = \mathbf{w}_o * \mathbf{h} * X(n) + \mathbf{w}_o * V(n)$, por lo que es deseable que $\mathbf{w}_o * \mathbf{h} = \delta(k)$---el sistema identidad---, para que $Z(n) \approx X(n)$. Dicho otra manera, que la respuesta en frecuencia del sistema en cascada sea un filtro \emph{pasa-todo}. En la figura~\ref{fig:ej4_30_coef} se aprecian estos atributos mencionados. Mientras que para filtros ecualizadores no lo suficientemente largos, la convolución entre $h(n)$ y $w(n)$ es cercana pero no igual a una delta en el origen, y la respuesta en frecuencia del sistema combinado ($|H(\omega)| \cdot |W(\omega)|$) no tiene magnitud exactamente 1 (\qty{0}{\dB}), como se observa en la figura~\ref{fig:ej4_2_coef}.
 
-Esto mismo se puede visualizar en las figuras del sistema en cascada. Recordar que $Z(n) = \textbf{w}_o * \textbf{h} * X(n) + \textbf{w}_o * V(n)$, por lo que es deseable que $\textbf{w}_o * \textbf{h}$ sea una delta para que $Z(n) \approx X(n)$. Dicho otra manera, que la respuesta en frecuencia del sistema en cascada sea un filtro 'pasa-todo'. En la figura~\ref{fig:ej4_30_coef} se aprecian estos atributos mencionados.
-
-En resumen, hay que encontrar una relación de compromiso entre el largo del ecualizador y la calidad de la señal de salida, para obtener algo fiel a la entrada sin tener que hacer calculos en vano. 
+En resumen, hay que encontrar una relación de compromiso entre el largo del ecualizador y la calidad de la señal de salida, para obtener algo fiel a la entrada sin tener que hacer cálculos en vano.
 
 \begin{figure}[!hbp]
 	\centering
