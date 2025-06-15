@@ -17,4 +17,5 @@ jobs:
       - name: Set up LaTeX environment
         uses: dante-ev/latex-action@latest
         with:
-          root_file: informe/document.tex
+          root_file: document.tex
+          working_directory: ./informe
