@@ -20,7 +20,7 @@ autocorrelación de la siguiente manera
 \end{align*}
 Observar que $X(n)$ se trata de un ruido blanco.
 
-Al proceso de salida del filtro FIR se le suma un ruido blanco $V(n)$ de varianza $\sigma^2$ y media nula independiente a $X(n)$,
+Al proceso de salida del filtro FIR se le suma un ruido blanco $V(n)$ de varianza $\sigma^2_V$ y media nula independiente a $X(n)$,
 definiéndose \[Y(n) = (h * X)(n) + V(n) = \sum_{i=1}^{L-1} h(i)X(n - i) + V(n)\] por lo que es posible calcular su función de
 autocorrelación de la siguiente manera.
 
@@ -91,7 +91,7 @@ Finalmente $\mathbf{w}_o$ es un vector que se obtiene de operar de la siguiente 
 
 \section{Simulación del sistema}
 
-Como se demuestra en la Sección~\ref{sec:eleccion-optima}, las matrices con las que se calculan los coeficientes óptimos para el ecualizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la función \verb|filter| con $\mathbf{h}$ y $\mathbf{w}_o$. El ruido $V(n)$ que se añade a la distorsión causada por el canal es un ruido blanco gaussiano de media nula y varianza $\sigma_V^2 = 0.005$. Los coeficientes del filtro $h(n)$ que distorsiona la señal son ${1, 0.6, 0.2, -0.2, 0.1, 0.05}$.
+Como se demuestra en la Sección~\ref{sec:eleccion-optima}, las matrices con las que se calculan los coeficientes óptimos para el ecualizador dependen solamente de los coeficientes del modelo del canal. Luego se simuló la secuencia $X(n)$ y en base a ella se calcularon las secuencias $Y(n)$ y $Z(n)$ usando la función \verb|filter| con $\mathbf{h}$ y $\mathbf{w}_o$. El ruido $V(n)$ que se añade a la distorsión causada por el canal es un ruido blanco gaussiano de media nula y varianza $\sigma_V^2 = 0.005$. Los coeficientes del filtro $h(n)$ que distorsiona la señal son $\{1, 0.6, 0.2, -0.2, 0.1, 0.05\}$.
 
 La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en algo similar a una delta en el origen y la PSD resulta ruidosa, pero relativamente constante.
 
@@ -102,7 +102,7 @@ La figura~\ref{fig:ej3_x} muestra como la autocorrelación de $X(n)$ resulta en 
 	\label{fig:ej3_x}
 \end{figure}
 
-En la figura~\ref{fig:ej3_y} se observan los atributos de la secuencia $Y(n)$, es decir cómo termina $X(n)$ una vez que atraviesa el canal. Como era de esperar, la señal se distorsiona considerablemente, ya que tanto la secuencia, como su autocorrelación y PSD difieren mucho de $X(n)$.
+En la figura~\ref{fig:ej3_y} se observan los atributos de la secuencia $Y(n)$, es decir cómo termina $X(n)$ una vez que atraviesa el canal. Como era de esperar, la señal se distorsiona considerablemente, ya que tanto la secuencia como su autocorrelación y PSD difieren mucho de $X(n)$.
 
 \begin{figure}[!hbp]
 	\centering
